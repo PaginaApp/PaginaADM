@@ -11,3 +11,8 @@
   --vermelho: #CD4E4E;
   --verde: #4ECD72;
 }
+
+body{
+  margin: 0%;
+  font-family: "Poppins";
+}
