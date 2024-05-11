@@ -16,3 +16,7 @@ body{
   margin: 0%;
   font-family: "Poppins";
 }
+
+a{
+  text-decoration: none;
+}
