@@ -6,6 +6,7 @@ class UserDTO {
   usu_Telefone: string;
   usu_CPF: string;
   usu_Nasc: Date;
+  usu_Ativo: boolean;
   usu_Endereco: {
     usu_Bairro: string;
     usu_CEP: string;
@@ -30,6 +31,7 @@ class UserDTO {
     usu_Telefone: string,
     usu_CPF: string,
     usu_Nasc: Date,
+    usu_Ativo: boolean,
     usu_Endereco: {
       usu_Bairro: string;
       usu_CEP: string;
@@ -51,6 +53,7 @@ class UserDTO {
     this.usu_CPF = usu_CPF;
     this.usu_Nasc = usu_Nasc;
     this.usu_Endereco = usu_Endereco;
+    this.usu_Ativo = usu_Ativo;
   }
 }
 
