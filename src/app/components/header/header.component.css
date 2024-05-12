@@ -9,7 +9,7 @@ header{
   border-bottom-right-radius: 0.938rem;
 }
 
-.header-selected{
+.header-default.selected a{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,15 +23,15 @@ header{
   width: 6.875rem;
   font-weight: 500;
   text-decoration: none;
+  pointer-events: none;
 }
 
-.header-default{
+.header-default a{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--branco);
   border-radius: 0.625rem;
-  color: var(--azul-claro);
+  color: var(--branco);
   padding-top: 0.313rem;
   padding-bottom: 0.313rem;
   padding-left: 1.25rem;
