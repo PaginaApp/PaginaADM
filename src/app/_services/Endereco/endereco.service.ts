@@ -29,7 +29,6 @@ export class EnderecoService {
       return response;
     } catch (error) {
       if (error instanceof HttpErrorResponse) {
-        console.log(error);
         return new ErrorDTO(error.error.message, error.status);
       } else {
         return new ErrorDTO('Erro ao chamar getEndereco', 500);
