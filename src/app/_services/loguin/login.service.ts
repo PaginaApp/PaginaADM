@@ -42,4 +42,26 @@ export class LoginService {
       }
     }
   }
+
+  async logout(usu_Id: string, token: string): Promise<boolean | ErrorDTO> {
+    try {
+      await firstValueFrom(
+        this.http.delete<any>(
+          `${this.globalService.baseUrl}session/${usu_Id}`,
+          {
+            body: {
+              refresh_token: token,
+            },
+          }
+        )
+      );
+      return true;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar logout', 500);
+      }
+    }
+  }
 }
