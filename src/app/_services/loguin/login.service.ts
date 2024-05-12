@@ -64,4 +64,33 @@ export class LoginService {
       }
     }
   }
+
+  async refreshToken(
+    usu_Id: string,
+    token: string
+  ): Promise<SessionDTO | ErrorDTO> {
+    try {
+      const response = await firstValueFrom(
+        this.http.put<any>(`${this.globalService.baseUrl}session/${usu_Id}`, {
+          token: token,
+        })
+      );
+
+      return {
+        accessToken: response.accessToken,
+        user: {
+          usu_Id: response.user.usu_Id,
+          usu_Nome: response.user.usu_Nome,
+          usu_Email: response.user.usu_Email,
+          usu_Telefone: response.user.usu_Telefone,
+        },
+      };
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar refreshToken', 500);
+      }
+    }
+  }
 }
