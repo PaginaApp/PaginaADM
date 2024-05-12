@@ -5,13 +5,18 @@ import { ErrorDTO } from '../../dto/ErrorDTO';
 import { IPaginatedRequest } from '../../dto/IPaginatedRequest';
 import { IPaginatedResponse } from '../../dto/IPaginatedResponse';
 import { UserDTO } from '../../dto/UserDTO';
+import { EnderecoService } from '../Endereco/endereco.service';
 import { GlobalService } from '../global.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private globalService: GlobalService, private http: HttpClient) {}
+  constructor(
+    private globalService: GlobalService,
+    private http: HttpClient,
+    private enderecoService: EnderecoService
+  ) {}
 
   // listagem paginada de usuários
   async listUsers(
@@ -31,6 +36,16 @@ export class UserService {
           },
         })
       );
+
+      // adiciona o endereco ao usuário
+      for (const user of response.results) {
+        console.log(user.usu_Id);
+        const endereco = await this.enderecoService.getEndereco(user.usu_Id);
+        if (endereco instanceof ErrorDTO && endereco.code === 404) {
+          user.usu_Endereco = null;
+        }
+        user.usu_Endereco = endereco;
+      }
 
       return {
         results: response.results,
