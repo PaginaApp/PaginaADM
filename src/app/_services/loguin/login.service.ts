@@ -24,7 +24,6 @@ export class LoginService {
         })
       );
 
-      console.log(response);
       return {
         accessToken: response.accessToken,
         user: {
