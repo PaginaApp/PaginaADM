@@ -32,8 +32,6 @@ export class UserService {
         })
       );
 
-      console.log(response);
-
       return {
         results: response.results,
         total: response.total,
@@ -42,10 +40,8 @@ export class UserService {
       };
     } catch (error) {
       if (error instanceof HttpErrorResponse) {
-        console.log(error.error.message);
         return new ErrorDTO(error.error.message, error.status);
       } else {
-        console.log('confuso2');
         return new ErrorDTO('Erro ao chamar listUsers', 500);
       }
     }
