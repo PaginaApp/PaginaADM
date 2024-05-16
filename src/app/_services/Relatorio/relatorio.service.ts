@@ -63,4 +63,31 @@ export class RelatorioService {
       }
     }
   }
+
+  // relatorio transacoes realizadas mes
+  async relatorioTransacoesMes(
+    ano: Number
+  ): Promise<RelatorioExemplarMesDTO | ErrorDTO> {
+    try {
+      const response = await firstValueFrom(
+        this.http.get<any>(
+          `${this.globalService.baseUrl}relatorio/transacoes/${ano}`,
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+              // para pular a mensagem do navegador
+              'ngrok-skip-browser-warning': 'true',
+            },
+          }
+        )
+      );
+      return response;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar listUsers', 500);
+      }
+    }
+  }
 }
