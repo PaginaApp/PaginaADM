@@ -34,10 +34,35 @@ export class AutorService {
       return response;
     } catch (error) {
       if (error instanceof HttpErrorResponse) {
-        console.log(error);
         return new ErrorDTO(error.error.message, error.status);
       } else {
         return new ErrorDTO('Erro ao chamar listUsers', 500);
+      }
+    }
+  }
+
+  // cria um autor
+  public async create(aut_Nome: string): Promise<AutorDTO | ErrorDTO> {
+    try {
+      const response = await firstValueFrom(
+        this.http.post<any>(
+          `${this.globalService.baseUrl}autor`,
+          { aut_Nome },
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+              // para pular a mensagem do navegador
+              'ngrok-skip-browser-warning': 'true',
+            },
+          }
+        )
+      );
+      return response;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar createAutor', 500);
       }
     }
   }
