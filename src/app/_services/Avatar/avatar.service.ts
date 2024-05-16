@@ -42,5 +42,30 @@ export class AvatarService {
     }
   }
 
-  //
+  // altera o avatar do usuário
+  async setAvatar(usu_Id: string, avatar: string): Promise<ErrorDTO | null> {
+    try {
+      await firstValueFrom(
+        this.http.post<any>(
+          `${this.globalService.baseUrl}users/${usu_Id}/avatar`,
+          { avatar },
+          {
+            headers: {
+              //Authorization: `Bearer ${this.globalService.accessToken}`,
+              // para pular a mensagem do navegador
+              'ngrok-skip-browser-warning': 'true',
+            },
+          }
+        )
+      );
+
+      return null;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar setAvatar', 500);
+      }
+    }
+  }
 }
