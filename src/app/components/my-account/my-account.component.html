@@ -2,7 +2,8 @@
 
 <div class="content">
   <div class="avatar">
-    <img src="assets/images/avatar.png" alt="Avatar">
+    <img [src]="avatar" alt="Avatar">
+    <input type="file" (change)="onFileSelected($event)" class="input-img">
   </div>
   <div class="inputs">
     <label for="nome">Nome</label>
