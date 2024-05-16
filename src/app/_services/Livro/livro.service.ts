@@ -91,4 +91,49 @@ export class LivroService {
       }
     }
   }
+
+  // deletar livro
+  async deleteLivro(liv_Id: string): Promise<boolean | ErrorDTO> {
+    try {
+      await firstValueFrom(
+        this.http.delete<any>(`${this.globalService.baseUrl}livro/${liv_Id}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+            // para pular a mensagem do navegador
+            'ngrok-skip-browser-warning': 'true',
+          },
+        })
+      );
+      return true;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar deleteLivro', 500);
+      }
+    }
+  }
+
+  // get livro
+  async getLivro(liv_Id: string): Promise<LivroDTO | ErrorDTO> {
+    try {
+      const response = await firstValueFrom(
+        this.http.get<any>(`${this.globalService.baseUrl}livro/${liv_Id}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+            // para pular a mensagem do navegador
+            'ngrok-skip-browser-warning': 'true',
+          },
+        })
+      );
+
+      return response;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar getLivro', 500);
+      }
+    }
+  }
 }
