@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { ErrorDTO } from '../../dto/ErrorDTO';
 import { IPaginatedRequest } from '../../dto/IPaginatedRequest';
@@ -15,7 +16,8 @@ export class UserService {
   constructor(
     private globalService: GlobalService,
     private http: HttpClient,
-    private enderecoService: EnderecoService
+    private enderecoService: EnderecoService,
+    private routes: Router
   ) {}
 
   // listagem paginada de usuários
@@ -80,6 +82,47 @@ export class UserService {
         return new ErrorDTO(error.error.message, error.status);
       } else {
         return new ErrorDTO('Erro ao chamar deleteUser', 500);
+      }
+    }
+  }
+
+  // altera a senha do usuário
+  async changePassword(
+    usu_Senha: string,
+    novaSenha: string
+  ): Promise<boolean | ErrorDTO> {
+    try {
+      if (!sessionStorage.getItem('user')) {
+        window.alert('Usuário não logado');
+        this.routes.navigate(['/login']);
+      }
+
+      const user = JSON.parse(sessionStorage.getItem('user')!);
+
+      const data = {
+        usu_Senha,
+        novaSenha,
+      };
+
+      await firstValueFrom(
+        this.http.put<any>(
+          `${this.globalService.baseUrl}users/${user.usu_Id}/senha`,
+          data,
+          {
+            headers: {
+              //Authorization: `Bearer ${this.globalService.accessToken}`,
+              // para pular a mensagem do navegador
+              'ngrok-skip-browser-warning': 'true',
+            },
+          }
+        )
+      );
+      return true;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar changePassword', 500);
       }
     }
   }
