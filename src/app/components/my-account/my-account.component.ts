@@ -24,6 +24,9 @@ export class MyAccountComponent implements OnInit {
   ) {}
 
   public avatar: string = '';
+  // pega o nome do usuario e email na sessão
+  public nome: string = JSON.parse(sessionStorage.getItem('user')!).usu_Nome;
+  public email: string = JSON.parse(sessionStorage.getItem('user')!).usu_Email;
 
   async ngOnInit(): Promise<void> {
     // seta o avatar do usuário
