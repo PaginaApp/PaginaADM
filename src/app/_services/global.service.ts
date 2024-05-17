@@ -6,4 +6,11 @@ import { environment } from '../../../environment';
 })
 export class GlobalService {
   public baseUrl: string = environment.BASE_URL;
+
+  public verifyToken(): boolean {
+    return (
+      sessionStorage.getItem('accessToken') !== null &&
+      sessionStorage.getItem('user') !== null
+    );
+  }
 }
