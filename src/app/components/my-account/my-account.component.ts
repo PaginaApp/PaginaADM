@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AvatarService } from '../../_services/Avatar/avatar.service';
+import { GlobalService } from '../../_services/global.service';
+import { LoginService } from '../../_services/loguin/login.service';
+import { UserService } from '../../_services/user/user.service';
 import { ErrorDTO } from '../../dto/ErrorDTO';
 import { HeaderComponent } from '../header/header.component';
 
@@ -12,7 +15,13 @@ import { HeaderComponent } from '../header/header.component';
   styleUrl: './my-account.component.css',
 })
 export class MyAccountComponent implements OnInit {
-  constructor(private avatarService: AvatarService, private router: Router) {}
+  constructor(
+    private avatarService: AvatarService,
+    private router: Router,
+    private userService: UserService,
+    private loginService: LoginService,
+    private globalService: GlobalService
+  ) {}
 
   public avatar: string = '';
 
@@ -77,6 +86,30 @@ export class MyAccountComponent implements OnInit {
       }
     } catch (error) {
       window.alert('Erro ao chamar getAvatar');
+    }
+  }
+
+  public async logout(): Promise<void> {
+    if (!this.globalService.verifyToken()) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    const user = JSON.parse(sessionStorage.getItem('user')!);
+    const accessToken = sessionStorage.getItem('accessToken')!;
+
+    try {
+      const resposta = await this.loginService.logout(user.usu_Id, accessToken);
+
+      if (resposta instanceof ErrorDTO) {
+        window.alert(resposta.message);
+      } else {
+        sessionStorage.removeItem('accessToken');
+        sessionStorage.removeItem('user');
+        this.router.navigate(['/login']);
+      }
+    } catch (error) {
+      window.alert('Erro ao chamar logout');
     }
   }
 }
