@@ -125,7 +125,6 @@ export class MyAccountComponent implements OnInit {
   }
 
   public closeModal(): void {
-    console.log('closeModal');
     this.isChangePasswordModalOpen = false;
   }
 }
