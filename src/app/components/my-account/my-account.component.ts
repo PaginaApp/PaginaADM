@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AvatarService } from '../../_services/Avatar/avatar.service';
@@ -6,11 +7,12 @@ import { LoginService } from '../../_services/loguin/login.service';
 import { UserService } from '../../_services/user/user.service';
 import { ErrorDTO } from '../../dto/ErrorDTO';
 import { HeaderComponent } from '../header/header.component';
+import { PasswordComponent } from './password/password.component';
 
 @Component({
   selector: 'app-my-account',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, PasswordComponent, NgIf],
   templateUrl: './my-account.component.html',
   styleUrl: './my-account.component.css',
 })
@@ -27,6 +29,8 @@ export class MyAccountComponent implements OnInit {
   // pega o nome do usuario e email na sessão
   public nome: string = JSON.parse(sessionStorage.getItem('user')!).usu_Nome;
   public email: string = JSON.parse(sessionStorage.getItem('user')!).usu_Email;
+
+  public isChangePasswordModalOpen: boolean = false;
 
   async ngOnInit(): Promise<void> {
     // seta o avatar do usuário
@@ -114,5 +118,14 @@ export class MyAccountComponent implements OnInit {
     } catch (error) {
       window.alert('Erro ao chamar logout');
     }
+  }
+
+  public openModal(): void {
+    this.isChangePasswordModalOpen = true;
+  }
+
+  public closeModal(): void {
+    console.log('closeModal');
+    this.isChangePasswordModalOpen = false;
   }
 }

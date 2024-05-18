@@ -12,7 +12,13 @@
     <input type="email" name="email" id="email" [value]="email" readonly>
   </div>
   <div class="buttons">
-    <button class="btn btn-primary"> <i class="ri-edit-line"></i> Alterar</button>
+    <button class="btn btn-primary" (click)="openModal()"> <i class="ri-edit-line"></i> Alterar</button>
     <button class="btn btn-danger"  (click)="logout()"> <i class="ri-logout-box-r-line"></i> Sair</button>
+  </div>
+</div>
+
+<div *ngIf="isChangePasswordModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <app-password (closeModalEvent)="closeModal()"></app-password>
   </div>
 </div>
