@@ -2,35 +2,29 @@ import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AvatarService } from '../../_services/Avatar/avatar.service';
-import { GlobalService } from '../../_services/global.service';
-import { LoginService } from '../../_services/loguin/login.service';
-import { UserService } from '../../_services/user/user.service';
 import { ErrorDTO } from '../../dto/ErrorDTO';
 import { HeaderComponent } from '../header/header.component';
+import { LogoutComponent } from './logout/logout.component';
 import { PasswordComponent } from './password/password.component';
 
 @Component({
   selector: 'app-my-account',
   standalone: true,
-  imports: [HeaderComponent, PasswordComponent, NgIf],
+  imports: [HeaderComponent, PasswordComponent, NgIf, LogoutComponent],
   templateUrl: './my-account.component.html',
   styleUrl: './my-account.component.css',
 })
 export class MyAccountComponent implements OnInit {
-  constructor(
-    private avatarService: AvatarService,
-    private router: Router,
-    private userService: UserService,
-    private loginService: LoginService,
-    private globalService: GlobalService
-  ) {}
+  constructor(private avatarService: AvatarService, private router: Router) {}
 
   public avatar: string = '';
   // pega o nome do usuario e email na sessão
   public nome: string = JSON.parse(sessionStorage.getItem('user')!).usu_Nome;
   public email: string = JSON.parse(sessionStorage.getItem('user')!).usu_Email;
 
+  // controle de modal
   public isChangePasswordModalOpen: boolean = false;
+  public isLogoutModalOpen: boolean = false;
 
   async ngOnInit(): Promise<void> {
     // seta o avatar do usuário
@@ -96,35 +90,16 @@ export class MyAccountComponent implements OnInit {
     }
   }
 
-  public async logout(): Promise<void> {
-    if (!this.globalService.verifyToken()) {
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    const user = JSON.parse(sessionStorage.getItem('user')!);
-    const accessToken = sessionStorage.getItem('accessToken')!;
-
-    try {
-      const resposta = await this.loginService.logout(user.usu_Id, accessToken);
-
-      if (resposta instanceof ErrorDTO) {
-        window.alert(resposta.message);
-      } else {
-        sessionStorage.removeItem('accessToken');
-        sessionStorage.removeItem('user');
-        this.router.navigate(['/login']);
-      }
-    } catch (error) {
-      window.alert('Erro ao chamar logout');
-    }
-  }
-
   public openModal(): void {
     this.isChangePasswordModalOpen = true;
   }
 
   public closeModal(): void {
     this.isChangePasswordModalOpen = false;
+    this.isLogoutModalOpen = false;
+  }
+
+  public openLogoutModal(): void {
+    this.isLogoutModalOpen = true;
   }
 }
