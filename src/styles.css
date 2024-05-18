@@ -20,3 +20,51 @@ body{
 a{
   text-decoration: none;
 }
+
+.button-primary{
+  transition: 0.5s;
+  background-color: var(--azul-claro);
+  color: var(--branco);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 10rem;
+}
+
+.button-primary-outline{
+  transition: 0.5s;
+  background-color: transparent;
+  color: var(--azul-claro);
+  border: 2px solid var(--azul-claro);
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 10rem;
+}
+
+.button-primary-outline:hover{
+  transition: 0.5s;
+  background-color: var(--azul-claro);
+  color: var(--branco);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 10rem;
+}
+
+.button-primary:hover{
+  transition: 0.5s;
+  background-color: transparent;
+  color: var(--azul-claro);
+  border: 2px solid var(--azul-claro);
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 10rem;
+}
