@@ -1,0 +1,39 @@
+.logout-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.title{
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  width: 100%;
+  margin-left: 2rem;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.btns{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.negrito{
+  font-weight: 600;
+}
