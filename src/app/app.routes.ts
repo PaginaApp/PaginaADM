@@ -5,6 +5,11 @@ import { MyAccountComponent } from './components/my-account/my-account.component
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
     path: 'conta',
     component: MyAccountComponent,
     pathMatch: 'full',
