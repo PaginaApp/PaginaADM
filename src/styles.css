@@ -95,3 +95,9 @@ a{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 1001;
 }
+
+/* error */
+.error{
+  color: var(--vermelho);
+  font-weight: 600;
+}
