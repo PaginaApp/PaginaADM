@@ -1,0 +1,14 @@
+<div class="content">
+  <h2 class="title">
+    Cadastrar Autor(a)
+  </h2>
+  <form [formGroup]="autorForm" class="input">
+      <label for="nome" class="label">Nome do autor</label>
+      <input type="text" id="nome" formControlName="nome" placeholder="Insira o nome do autor">
+  </form>
+  <div class="btns">
+    <button (click)="closeModal()" class="button-primary-outline">Cancelar</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <button (click)="saveAutor()" class="button-primary">Salvar</button>
+  </div>
+</div>
