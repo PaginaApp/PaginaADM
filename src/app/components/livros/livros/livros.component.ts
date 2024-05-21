@@ -5,11 +5,12 @@ import { ErrorDTO } from '../../../dto/ErrorDTO';
 import { IPaginatedResponse } from '../../../dto/IPaginatedResponse';
 import { LivroDTO } from '../../../dto/LivroDTO';
 import { HeaderComponent } from '../../header/header.component';
+import { NewEditoraComponent } from '../new-editora/new-editora.component';
 
 @Component({
   selector: 'app-livros',
   standalone: true,
-  imports: [HeaderComponent, NgFor, NgIf],
+  imports: [HeaderComponent, NgFor, NgIf, NewEditoraComponent],
   templateUrl: './livros.component.html',
   styleUrl: './livros.component.css',
 })
@@ -68,5 +69,9 @@ export class LivrosComponent implements OnInit {
 
   public closeModals(): void {
     this.isEditoraModalOpen = false;
+  }
+
+  public openEditoraModal(): void {
+    this.isEditoraModalOpen = true;
   }
 }

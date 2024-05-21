@@ -2,7 +2,7 @@
 
 <div class="btns">
   <button class="button-primary">Novo livro</button>
-  <button class="button-primary">Nova Editora</button>
+  <button class="button-primary" (click)="openEditoraModal()">Nova Editora</button>
   <button class="button-primary">Novo Autor</button>
 </div>
 <div class="content">
@@ -46,7 +46,7 @@
 
 <div *ngIf="isEditoraModalOpen" class="modal-overlay" (click)="closeModals()">
   <div class="modal" (click)="$event.stopPropagation()">
-
+    <app-new-editora (closeModalEvent)="closeModals()"></app-new-editora>
   </div>
 </div>
 
