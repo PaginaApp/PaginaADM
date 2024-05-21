@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="btns">
-  <button class="button-primary">Novo livro</button>
+  <button class="button-primary" (click)="openLivroModal()">Novo livro</button>
   <button class="button-primary" (click)="openEditoraModal()">Nova Editora</button>
   <button class="button-primary" (click)="openAutorModal()">Novo Autor</button>
 </div>
@@ -50,9 +50,14 @@
   </div>
 </div>
 
-
 <div *ngIf="isAutorModalOpen" class="modal-overlay" (click)="closeModals()">
   <div class="modal" (click)="$event.stopPropagation()">
     <app-new-autor (closeModalEvent)="closeModals()"></app-new-autor>
+  </div>
+</div>
+
+<div *ngIf="isLivroModalOpen" class="modal-overlay" (click)="closeModals()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <app-new-livro (closeModalEvent)="closeModals()"></app-new-livro>
   </div>
 </div>

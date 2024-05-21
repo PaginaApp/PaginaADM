@@ -7,6 +7,7 @@ import { LivroDTO } from '../../../dto/LivroDTO';
 import { HeaderComponent } from '../../header/header.component';
 import { NewAutorComponent } from '../new-autor/new-autor.component';
 import { NewEditoraComponent } from '../new-editora/new-editora.component';
+import { NewLivroComponent } from '../new-livro/new-livro.component';
 
 @Component({
   selector: 'app-livros',
@@ -17,6 +18,7 @@ import { NewEditoraComponent } from '../new-editora/new-editora.component';
     NgIf,
     NewEditoraComponent,
     NewAutorComponent,
+    NewLivroComponent,
   ],
   templateUrl: './livros.component.html',
   styleUrl: './livros.component.css',
@@ -33,6 +35,7 @@ export class LivrosComponent implements OnInit {
 
   public isEditoraModalOpen: boolean = false;
   public isAutorModalOpen: boolean = false;
+  public isLivroModalOpen: boolean = false;
 
   public totalPages(): number {
     return Math.ceil(this.livros.total / this.livros.limit);
@@ -78,6 +81,7 @@ export class LivrosComponent implements OnInit {
   public closeModals(): void {
     this.isEditoraModalOpen = false;
     this.isAutorModalOpen = false;
+    this.isLivroModalOpen = false;
   }
 
   public openEditoraModal(): void {
@@ -86,5 +90,9 @@ export class LivrosComponent implements OnInit {
 
   public openAutorModal(): void {
     this.isAutorModalOpen = true;
+  }
+
+  public openLivroModal(): void {
+    this.isLivroModalOpen = true;
   }
 }
