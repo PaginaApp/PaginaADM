@@ -35,3 +35,9 @@
   </div>
 </div>
 
+<div *ngIf="isEditoraModalOpen" class="modal-overlay" (click)="closeModals()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+  </div>
+</div>
+

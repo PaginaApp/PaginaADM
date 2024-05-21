@@ -23,6 +23,8 @@ export class LivrosComponent implements OnInit {
     results: [],
   };
 
+  public isEditoraModalOpen: boolean = false;
+
   public totalPages(): number {
     return Math.ceil(this.livros.total / this.livros.limit);
   }
@@ -48,5 +50,9 @@ export class LivrosComponent implements OnInit {
     } catch (error) {
       this.error = new ErrorDTO('Erro ao listar livros', 500);
     }
+  }
+
+  public closeModals(): void {
+    this.isEditoraModalOpen = false;
   }
 }
