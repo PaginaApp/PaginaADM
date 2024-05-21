@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AutorService } from '../../../_services/Autor/autor.service';
+import { EditoraService } from '../../../_services/Editora/editora.service';
 import { LivroService } from '../../../_services/Livro/livro.service';
 import { AutorDTO } from '../../../dto/AutorDTO';
 import { CategoriaDTO } from '../../../dto/CategoriaDTO';
@@ -39,13 +40,14 @@ export class NewLivroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private livroService: LivroService,
-    private autorService: AutorService
+    private autorService: AutorService,
+    private editoraService: EditoraService
   ) {
     this.livroForm = this.formBuilder.group({
       Titulo: ['', [Validators.required]],
       Ano: ['', [Validators.required]],
       Sinopse: ['', [Validators.required]],
-      autor: ['Nei', [Validators.required]],
+      autor: ['', [Validators.required]],
       editora: ['', [Validators.required]],
       ISBN: ['', [Validators.required]],
       categoria: [[''], [Validators.required]],
@@ -58,6 +60,7 @@ export class NewLivroComponent implements OnInit {
 
   public async ngOnInit(): Promise<void> {
     this.listAutores();
+    this.listEditoras();
   }
 
   public async saveLivro(): Promise<void> {
@@ -113,11 +116,13 @@ export class NewLivroComponent implements OnInit {
     };
   }
 
-  public listAutores(): void {
+  // autores
+
+  public async listAutores(): Promise<void> {
     if (this.livroForm.get('autor')!.value === '') {
-      this.listAllAutores();
+      await this.listAllAutores();
     } else {
-      this.listAutoresByName();
+      await this.listAutoresByName();
     }
   }
 
@@ -153,6 +158,50 @@ export class NewLivroComponent implements OnInit {
       }
     } catch (error) {
       this.error = 'Erro ao listar autores';
+    }
+  }
+
+  // editoras
+  public async listEditoras(): Promise<void> {
+    if (this.livroForm.get('editora')!.value === '') {
+      await this.listAllEditoras();
+    } else {
+      await this.listEditorasByName();
+    }
+  }
+
+  private async listAllEditoras(): Promise<void> {
+    try {
+      const response = await this.editoraService.list(this.page, this.limit);
+
+      if (response instanceof ErrorDTO) {
+        this.error = response.message;
+        return;
+      } else {
+        this.editoras = response.results;
+      }
+    } catch (error) {
+      this.error = 'Erro ao listar editoras';
+    }
+  }
+
+  private async listEditorasByName(): Promise<void> {
+    const editora = this.livroForm.get('editora')!.value;
+    try {
+      const response = await this.editoraService.listByName(
+        editora,
+        this.page,
+        this.limit
+      );
+
+      if (response instanceof ErrorDTO) {
+        this.error = response.message;
+        return;
+      } else {
+        this.editoras = response.results;
+      }
+    } catch (error) {
+      this.error = 'Erro ao listar editoras';
     }
   }
 }
