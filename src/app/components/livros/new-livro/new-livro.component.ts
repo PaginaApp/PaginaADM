@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AutorService } from '../../../_services/Autor/autor.service';
+import { CategoriaService } from '../../../_services/Categoria/categoria.service';
 import { EditoraService } from '../../../_services/Editora/editora.service';
 import { LivroService } from '../../../_services/Livro/livro.service';
 import { AutorDTO } from '../../../dto/AutorDTO';
@@ -32,6 +33,7 @@ export class NewLivroComponent implements OnInit {
   public autores: AutorDTO[] = [];
   public categorias: CategoriaDTO[] = [];
   public editoras: EditoraDTO[] = [];
+  public selectedCategorias: CategoriaDTO[] = [];
 
   // filtros
   private page = 1;
@@ -41,7 +43,8 @@ export class NewLivroComponent implements OnInit {
     private formBuilder: FormBuilder,
     private livroService: LivroService,
     private autorService: AutorService,
-    private editoraService: EditoraService
+    private editoraService: EditoraService,
+    private categoriaService: CategoriaService
   ) {
     this.livroForm = this.formBuilder.group({
       Titulo: ['', [Validators.required]],
@@ -61,6 +64,7 @@ export class NewLivroComponent implements OnInit {
   public async ngOnInit(): Promise<void> {
     this.listAutores();
     this.listEditoras();
+    this.createCategorias();
   }
 
   public async saveLivro(): Promise<void> {
@@ -203,5 +207,41 @@ export class NewLivroComponent implements OnInit {
     } catch (error) {
       this.error = 'Erro ao listar editoras';
     }
+  }
+
+  // categorias
+  public async listCategorias(): Promise<void> {
+    if (this.livroForm.get('categoria')!.value === '') {
+      await this.listAllCategorias();
+    } else {
+      await this.listCategoriasByName();
+    }
+  }
+
+  private async createCategorias(): Promise<void> {
+    try {
+      const response = await this.categoriaService.list();
+
+      if (response instanceof ErrorDTO) {
+        this.error = response.message;
+        return;
+      } else {
+        this.categorias = response.results;
+      }
+    } catch (error) {
+      this.error = 'Erro ao listar categorias';
+    }
+  }
+
+  private async listCategoriasByName(): Promise<void> {
+    const categoria = this.livroForm.get('categoria')!.value;
+    const filteredCategorias = this.categorias.filter((cat) =>
+      cat.cat_Nome.toLowerCase().includes(categoria.toLowerCase())
+    );
+    this.selectedCategorias = filteredCategorias;
+  }
+
+  private async listAllCategorias(): Promise<void> {
+    this.selectedCategorias = this.categorias;
   }
 }
