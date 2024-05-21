@@ -29,6 +29,20 @@ export class LivrosComponent implements OnInit {
     return Math.ceil(this.livros.total / this.livros.limit);
   }
 
+  public nextPage(): void {
+    if (this.livros.page < this.totalPages()) {
+      this.livros.page++;
+      this.updateList();
+    }
+  }
+
+  public prevPage(): void {
+    if (this.livros.page > 1) {
+      this.livros.page--;
+      this.updateList();
+    }
+  }
+
   public error: ErrorDTO | undefined;
 
   async ngOnInit(): Promise<void> {

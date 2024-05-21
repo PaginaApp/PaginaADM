@@ -25,10 +25,19 @@
     </tbody>
     <tfoot>
       <tr>
-        <td>
-          {{livros.page}} de {{totalPages()}}
+        <td colspan="4">
+          <div class="pagination-controls">
+            <button *ngIf="livros.page > 1" (click)="prevPage()" aria-label="Página anterior">
+              <i class="ri-arrow-left-s-line"></i>
+            </button>
+            {{ livros.page }} de {{ totalPages() }}
+            <button *ngIf="livros.page < totalPages()" (click)="nextPage()" aria-label="Próxima página">
+              <i class="ri-arrow-right-s-line"></i>
+            </button>
+          </div>
         </td>
       </tr>
+    </tfoot>
   </table>
   <div *ngIf="error" class="error">
     {{ error }}
