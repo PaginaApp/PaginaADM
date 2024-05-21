@@ -1,0 +1,158 @@
+import { NgIf } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { AutorService } from '../../../_services/Autor/autor.service';
+import { LivroService } from '../../../_services/Livro/livro.service';
+import { AutorDTO } from '../../../dto/AutorDTO';
+import { CategoriaDTO } from '../../../dto/CategoriaDTO';
+import { CreateLivroDTO } from '../../../dto/CreateLivroDTO';
+import { EditoraDTO } from '../../../dto/EditoraDTO';
+import { ErrorDTO } from '../../../dto/ErrorDTO';
+
+@Component({
+  selector: 'app-new-livro',
+  standalone: true,
+  imports: [ReactiveFormsModule, NgIf],
+  templateUrl: './new-livro.component.html',
+  styleUrl: './new-livro.component.css',
+})
+export class NewLivroComponent implements OnInit {
+  @Output() closeModalEvent = new EventEmitter<void>();
+
+  public livroForm: FormGroup;
+  public error: string | undefined;
+
+  // listas
+  public autores: AutorDTO[] = [];
+  public categorias: CategoriaDTO[] = [];
+  public editoras: EditoraDTO[] = [];
+
+  // filtros
+  private page = 1;
+  private limit = 100;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private livroService: LivroService,
+    private autorService: AutorService
+  ) {
+    this.livroForm = this.formBuilder.group({
+      Titulo: ['', [Validators.required]],
+      Ano: ['', [Validators.required]],
+      Sinopse: ['', [Validators.required]],
+      autor: ['Nei', [Validators.required]],
+      editora: ['', [Validators.required]],
+      ISBN: ['', [Validators.required]],
+      categoria: [[''], [Validators.required]],
+    });
+
+    this.livroForm.valueChanges.subscribe(() => {
+      this.error = undefined;
+    });
+  }
+
+  public async ngOnInit(): Promise<void> {
+    this.listAutores();
+  }
+
+  public async saveLivro(): Promise<void> {
+    if (!this.livroForm.valid) {
+      this.error = 'Campos inválidos, verifique os dados e tente novamente.';
+      return;
+    }
+
+    try {
+      const livro = this.buildlivro();
+
+      const resposta = await this.livroService.criarLivro(livro);
+
+      if (resposta instanceof ErrorDTO) {
+        this.error = resposta.message;
+        return;
+      } else {
+        window.alert('Livro salvo com sucesso!');
+        this.closeModal();
+      }
+    } catch (error) {
+      this.error = 'Erro ao salvar livro, tente novamente.';
+    }
+  }
+
+  public closeModal(): void {
+    this.closeModalEvent.emit();
+  }
+
+  public submitForm(): void {
+    this.saveLivro();
+  }
+
+  private buildlivro(): CreateLivroDTO {
+    const Titulo = this.livroForm.get('Titulo')!.value;
+    const autor: AutorDTO = this.livroForm.get('autor')!.value;
+    const editora: EditoraDTO = this.livroForm.get('editora')!.value;
+    const ISBN = this.livroForm.get('ISBN')!.value;
+    const Ano = this.livroForm.get('Ano')!.value;
+    const Sinopse = this.livroForm.get('Sinopse')!.value;
+    const categoria: CategoriaDTO[] = this.livroForm.get('categoria')!.value;
+
+    const categoriaIds: string[] = categoria.map((cat) => cat.cat_Id);
+
+    return {
+      liv_Ano: Ano,
+      liv_ISBN: ISBN,
+      liv_Sinopse: Sinopse,
+      liv_Titulo: Titulo,
+      liv_aut_id: autor.aut_Id,
+      liv_cat_id: categoriaIds,
+      liv_edi_id: editora.edi__Id,
+    };
+  }
+
+  public listAutores(): void {
+    if (this.livroForm.get('autor')!.value === '') {
+      this.listAllAutores();
+    } else {
+      this.listAutoresByName();
+    }
+  }
+
+  private async listAllAutores(): Promise<void> {
+    try {
+      const response = await this.autorService.list(this.page, this.limit);
+
+      if (response instanceof ErrorDTO) {
+        this.error = response.message;
+        return;
+      } else {
+        this.autores = response.results;
+      }
+    } catch (error) {
+      this.error = 'Erro ao listar autores';
+    }
+  }
+
+  private async listAutoresByName(): Promise<void> {
+    const autor = this.livroForm.get('autor')!.value;
+    try {
+      const response = await this.autorService.listByName(
+        autor,
+        this.page,
+        this.limit
+      );
+
+      if (response instanceof ErrorDTO) {
+        this.error = response.message;
+        return;
+      } else {
+        this.autores = response.results;
+      }
+    } catch (error) {
+      this.error = 'Erro ao listar autores';
+    }
+  }
+}
