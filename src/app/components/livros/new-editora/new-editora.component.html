@@ -1,0 +1,14 @@
+<div class="content">
+  <h2 class="title">
+    Cadastrar Editora
+  </h2>
+  <form [formGroup]="editoraForm" class="input">
+      <label for="nome" class="label">Nome da editora</label>
+      <input type="text" id="nome" formControlName="nome" placeholder="Insira o nome da editora">
+  </form>
+  <div class="btns">
+    <button (click)="closeModal()" class="button-primary-outline">Cancelar</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <button (click)="saveEditora()" class="button-primary">Salvar</button>
+  </div>
+</div>
