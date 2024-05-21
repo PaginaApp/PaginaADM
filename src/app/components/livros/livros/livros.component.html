@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="btns">
+  <button class="button-primary">Novo livro</button>
+  <button class="button-primary">Nova Editora</button>
+  <button class="button-primary">Novo Autor</button>
+</div>
+<div class="content">
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>ISBN</th>
+        <th>Autor</th>
+        <th>Ano</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros.results">
+        <td>{{ livro.liv_Titulo }}</td>
+        <td>{{ livro.liv_ISBN }}</td>
+        <td>{{ livro.autor.aut_Nome }}</td>
+        <td>{{ livro.liv_Ano }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>
+          {{livros.page}} de {{totalPages()}}
+        </td>
+      </tr>
+  </table>
+  <div *ngIf="error" class="error">
+    {{ error }}
+  </div>
+</div>
+
