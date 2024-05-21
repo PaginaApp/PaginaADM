@@ -66,4 +66,35 @@ export class AutorService {
       }
     }
   }
+
+  // lista por nome
+  public async listByName(
+    aut_Nome: string,
+    page: number,
+    limit: number
+  ): Promise<IPaginatedResponse<AutorDTO> | ErrorDTO> {
+    try {
+      const response = await firstValueFrom(
+        this.http.get<any>(`${this.globalService.baseUrl}autor/search`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
+            // para pular a mensagem do navegador
+            'ngrok-skip-browser-warning': 'true',
+          },
+          params: {
+            aut_Nome: aut_Nome,
+            page: page,
+            limit: limit,
+          },
+        })
+      );
+      return response;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar listUsers', 500);
+      }
+    }
+  }
 }
