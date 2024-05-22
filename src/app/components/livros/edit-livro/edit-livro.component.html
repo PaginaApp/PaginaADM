@@ -1,0 +1,84 @@
+<div class="NLivro-content">
+  <h2 class="NLivro-title">
+    Editar Livro
+  </h2>
+  <form [formGroup]="livroForm" (ngSubmit)="submitForm()" class="NLivro-inputs">
+    <div class="NLivro-input-group">
+      <div class="NLivro-input-1">
+        <label for="Titulo">Título</label>
+        <input type="text" id="Titulo" formControlName="Titulo" placeholder="Insira o título do livro" [value]="livro?.liv_Titulo"/>
+      </div>
+      <div class="NLivro-input-2">
+        <label for="Ano">Ano</label>
+        <input type="number" id="Ano" formControlName="Ano" placeholder="0000" [value]="livro?.liv_Ano"/>
+      </div>
+    </div>
+    <div class="NLivro-input-group">
+      <div class="NLivro-input-total">
+        <label for="Sinopse">Sinopse</label>
+        <input type="text" id="Sinopse" formControlName="Sinopse" placeholder="Insira a sinopse do livro" [value]="livro?.liv_Sinopse"/>
+      </div>
+    </div>
+    <div class="NLivro-input-group">
+      <div class="NLivro-input-1">
+        <label for="autor">Autor</label>
+        <ng-select
+          id="autor"
+          [items]="autores"
+          bindLabel="aut_Nome"
+          [multiple]="true"
+          [maxSelectedItems]="1"
+          formControlName="autor"
+          [searchable]="true"
+          [closeOnSelect]="true"
+          class="NLivro-select"
+          (search)="listAutores($event.term)"
+        >
+        </ng-select>
+      </div>
+      <div class="NLivro-input-2">
+        <label for="editora">Editora</label>
+        <ng-select
+          id="Editora"
+          [items]="editoras"
+          bindLabel="edi_Nome"
+          [multiple]="true"
+          [maxSelectedItems]="1"
+          formControlName="editora"
+          [searchable]="true"
+          [closeOnSelect]="true"
+          class="NLivro-select"
+        >
+        </ng-select>
+      </div>
+    </div>
+    <div class="NLivro-input-group">
+      <div class="NLivro-input-total">
+        <label for="ISBN">ISBN</label>
+        <input type="text" id="ISBN" formControlName="ISBN" placeholder="Insira o ISBN" [value]="livro?.liv_ISBN"/>
+      </div>
+    </div>
+    <div class="NLivro-input-group">
+      <div class="NLivro-input-total">
+        <label for="categoria">Categorias</label>
+        <ng-select
+          id="categoria"
+          [items]="categorias"
+          bindLabel="cat_Nome"
+          [multiple]="true"
+          [maxSelectedItems]="3"
+          formControlName="categoria"
+          [searchable]="true"
+          [closeOnSelect]="false"
+          class="NLivro-select"
+        >
+        </ng-select>
+      </div>
+    </div>
+  </form>
+  <div class="NLivro-btns">
+    <button class="button-primary" (click)="closeModal()">Cancelar</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <button class="button-primary-outline" (click)="submitForm()">Editar</button>
+  </div>
+</div>
