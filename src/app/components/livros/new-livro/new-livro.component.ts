@@ -1,11 +1,18 @@
 import { NgIf } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { AutorService } from '../../../_services/Autor/autor.service';
 import { CategoriaService } from '../../../_services/Categoria/categoria.service';
 import { EditoraService } from '../../../_services/Editora/editora.service';
@@ -15,13 +22,13 @@ import { CategoriaDTO } from '../../../dto/CategoriaDTO';
 import { CreateLivroDTO } from '../../../dto/CreateLivroDTO';
 import { EditoraDTO } from '../../../dto/EditoraDTO';
 import { ErrorDTO } from '../../../dto/ErrorDTO';
-
 @Component({
   selector: 'app-new-livro',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, NgSelectModule],
   templateUrl: './new-livro.component.html',
   styleUrl: './new-livro.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class NewLivroComponent implements OnInit {
   @Output() closeModalEvent = new EventEmitter<void>();
@@ -53,7 +60,7 @@ export class NewLivroComponent implements OnInit {
       autor: ['', [Validators.required]],
       editora: ['', [Validators.required]],
       ISBN: ['', [Validators.required]],
-      categoria: [[''], [Validators.required]],
+      categoria: [null, [Validators.required]],
     });
 
     this.livroForm.valueChanges.subscribe(() => {
@@ -65,6 +72,7 @@ export class NewLivroComponent implements OnInit {
     this.listAutores();
     this.listEditoras();
     this.createCategorias();
+    console.log(this.categorias);
   }
 
   public async saveLivro(): Promise<void> {
@@ -95,7 +103,8 @@ export class NewLivroComponent implements OnInit {
   }
 
   public submitForm(): void {
-    this.saveLivro();
+    //this.saveLivro();
+    console.log(this.livroForm.get('categoria')!.value);
   }
 
   private buildlivro(): CreateLivroDTO {
@@ -210,14 +219,6 @@ export class NewLivroComponent implements OnInit {
   }
 
   // categorias
-  public async listCategorias(): Promise<void> {
-    if (this.livroForm.get('categoria')!.value === '') {
-      await this.listAllCategorias();
-    } else {
-      await this.listCategoriasByName();
-    }
-  }
-
   private async createCategorias(): Promise<void> {
     try {
       const response = await this.categoriaService.list();
@@ -226,22 +227,10 @@ export class NewLivroComponent implements OnInit {
         this.error = response.message;
         return;
       } else {
-        this.categorias = response.results;
+        this.categorias = response;
       }
     } catch (error) {
       this.error = 'Erro ao listar categorias';
     }
-  }
-
-  private async listCategoriasByName(): Promise<void> {
-    const categoria = this.livroForm.get('categoria')!.value;
-    const filteredCategorias = this.categorias.filter((cat) =>
-      cat.cat_Nome.toLowerCase().includes(categoria.toLowerCase())
-    );
-    this.selectedCategorias = filteredCategorias;
-  }
-
-  private async listAllCategorias(): Promise<void> {
-    this.selectedCategorias = this.categorias;
   }
 }

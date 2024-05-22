@@ -1,0 +1,129 @@
+.NLivro-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.NLivro-title{
+  display: flex;
+  justify-content: left;
+  height: 100%;
+  width: 100%;
+  margin-left: 2rem;
+  margin-bottom: 0%;
+}
+
+.NLivro-inputs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 1rem;
+}
+
+.NLivro-input-group{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 1rem;
+  gap: 1rem;
+}
+
+.NLivro-btns{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.NLivro-input-1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+}
+
+.NLivro-input-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+}
+
+.NLivro-input-2 label{
+  font-weight: 600;
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  width: 85%;
+}
+
+.NLivro-input-1 label{
+  font-weight: 600;
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  width: 85%;
+}
+
+.NLivro-input-1 input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 87%;
+  border-radius: 9px;
+  border: 0.07rem solid var(--preto);
+}
+
+.NLivro-input-2 input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 87%;
+  border-radius: 9px;
+  border: 0.07rem solid var(--preto);
+}
+
+.NLivro-input-total{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.NLivro-input-total label{
+  font-weight: 600;
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  width: 90%;
+}
+
+.NLivro-input-total input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  border-radius: 9px;
+  border: 0.07rem solid var(--preto);
+}
