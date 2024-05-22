@@ -57,10 +57,10 @@ export class NewLivroComponent implements OnInit {
       Titulo: ['', [Validators.required]],
       Ano: ['', [Validators.required]],
       Sinopse: ['', [Validators.required]],
-      autor: [null, [Validators.required]],
-      editora: [null, [Validators.required]],
+      autor: [[], [Validators.required]],
+      editora: [[], [Validators.required]],
       ISBN: ['', [Validators.required]],
-      categoria: [null, [Validators.required]],
+      categoria: [[], [Validators.required]],
     });
 
     this.livroForm.valueChanges.subscribe(() => {
@@ -72,7 +72,6 @@ export class NewLivroComponent implements OnInit {
     this.listAutores(null);
     this.listEditoras(null);
     this.createCategorias();
-    console.log(this.autores);
   }
 
   public async saveLivro(): Promise<void> {
@@ -83,6 +82,8 @@ export class NewLivroComponent implements OnInit {
 
     try {
       const livro = this.buildlivro();
+
+      console.log(livro);
 
       const resposta = await this.livroService.criarLivro(livro);
 
@@ -103,29 +104,38 @@ export class NewLivroComponent implements OnInit {
   }
 
   public submitForm(): void {
-    //this.saveLivro();
-    console.log(this.livroForm.get('categoria')!.value);
+    this.saveLivro();
   }
 
   private buildlivro(): CreateLivroDTO {
     const Titulo = this.livroForm.get('Titulo')!.value;
-    const autor: AutorDTO = this.livroForm.get('autor')!.value;
-    const editora: EditoraDTO = this.livroForm.get('editora')!.value;
+    const autor: AutorDTO[] = this.livroForm.get('autor')!.value;
+    const editora: EditoraDTO[] = this.livroForm.get('editora')!.value;
     const ISBN = this.livroForm.get('ISBN')!.value;
     const Ano = this.livroForm.get('Ano')!.value;
     const Sinopse = this.livroForm.get('Sinopse')!.value;
     const categoria: CategoriaDTO[] = this.livroForm.get('categoria')!.value;
 
     const categoriaIds: string[] = categoria.map((cat) => cat.cat_Id);
+    if (autor.length === 0 || editora.length === 0) {
+      this.error = 'Selecione um autor e uma editora para o livro.';
+      return {} as CreateLivroDTO;
+    }
+
+    console.log('Autor:', this.livroForm.get('autor')?.value);
+    console.log('Editora:', this.livroForm.get('editora')?.value);
+    console.log('Categoria:', this.livroForm.get('categoria')?.value);
+    console.log('Autor:', autor[0].aut_Id);
+    console.log('Editora:', editora[0]);
 
     return {
-      liv_Ano: Ano,
+      liv_Ano: Ano.toString(),
       liv_ISBN: ISBN,
       liv_Sinopse: Sinopse,
       liv_Titulo: Titulo,
-      liv_aut_id: autor.aut_Id,
+      liv_aut_id: autor[0].aut_Id,
       liv_cat_id: categoriaIds,
-      liv_edi_id: editora.edi__Id,
+      liv_edi_id: editora[0].edi_Id,
     };
   }
 
@@ -136,7 +146,6 @@ export class NewLivroComponent implements OnInit {
       await this.listAllAutores();
     } else {
       await this.listAutoresByName(term);
-      console.log(this.autores);
     }
   }
 

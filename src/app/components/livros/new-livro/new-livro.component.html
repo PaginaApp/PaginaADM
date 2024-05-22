@@ -78,6 +78,7 @@
   </form>
   <div class="NLivro-btns">
     <button class="button-primary" (click)="closeModal()">Cancelar</button>
+    <div *ngIf="error" class="error">{{ error }}</div>
     <button class="button-primary-outline" (click)="submitForm()">Cadastrar</button>
   </div>
 </div>
