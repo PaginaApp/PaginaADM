@@ -57,8 +57,8 @@ export class NewLivroComponent implements OnInit {
       Titulo: ['', [Validators.required]],
       Ano: ['', [Validators.required]],
       Sinopse: ['', [Validators.required]],
-      autor: ['', [Validators.required]],
-      editora: ['', [Validators.required]],
+      autor: [null, [Validators.required]],
+      editora: [null, [Validators.required]],
       ISBN: ['', [Validators.required]],
       categoria: [null, [Validators.required]],
     });
@@ -72,7 +72,7 @@ export class NewLivroComponent implements OnInit {
     this.listAutores();
     this.listEditoras();
     this.createCategorias();
-    console.log(this.categorias);
+    console.log(this.autores);
   }
 
   public async saveLivro(): Promise<void> {
@@ -132,7 +132,10 @@ export class NewLivroComponent implements OnInit {
   // autores
 
   public async listAutores(): Promise<void> {
-    if (this.livroForm.get('autor')!.value === '') {
+    if (
+      this.livroForm.get('autor')!.value === '' ||
+      this.livroForm.get('autor')!.value === null
+    ) {
       await this.listAllAutores();
     } else {
       await this.listAutoresByName();

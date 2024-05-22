@@ -22,7 +22,18 @@
     <div class="NLivro-input-group">
       <div class="NLivro-input-1">
         <label for="autor">Autor</label>
-        <input type="text" id="autor" formControlName="autor" placeholder="Autor"/>
+        <ng-select
+          id="autor"
+          [items]="autores"
+          bindLabel="aut_Nome"
+          [multiple]="true"
+          [maxSelectedItems]="1"
+          formControlName="autor"
+          [searchable]="true"
+          [closeOnSelect]="true"
+          class="NLivro-select"
+        >
+        </ng-select>
       </div>
       <div class="NLivro-input-2">
         <label for="editora">Editora</label>
