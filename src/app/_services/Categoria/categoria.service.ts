@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { CategoriaDTO } from '../../dto/CategoriaDTO';
 import { ErrorDTO } from '../../dto/ErrorDTO';
-import { IPaginatedResponse } from '../../dto/IPaginatedResponse';
 import { GlobalService } from '../global.service';
 
 @Injectable({
@@ -13,7 +12,7 @@ export class CategoriaService {
   constructor(private globalService: GlobalService, private http: HttpClient) {}
 
   // lista categorias
-  public async list(): Promise<IPaginatedResponse<CategoriaDTO> | ErrorDTO> {
+  public async list(): Promise<CategoriaDTO[] | ErrorDTO> {
     try {
       const response = await firstValueFrom(
         this.http.get<any>(`${this.globalService.baseUrl}categoria`, {
