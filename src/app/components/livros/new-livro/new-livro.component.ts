@@ -69,7 +69,7 @@ export class NewLivroComponent implements OnInit {
   }
 
   public async ngOnInit(): Promise<void> {
-    this.listAutores();
+    this.listAutores(null);
     this.listEditoras();
     this.createCategorias();
     console.log(this.autores);
@@ -131,14 +131,12 @@ export class NewLivroComponent implements OnInit {
 
   // autores
 
-  public async listAutores(): Promise<void> {
-    if (
-      this.livroForm.get('autor')!.value === '' ||
-      this.livroForm.get('autor')!.value === null
-    ) {
+  public async listAutores(term: string | null): Promise<void> {
+    if (term === '' || term === null) {
       await this.listAllAutores();
     } else {
-      await this.listAutoresByName();
+      await this.listAutoresByName(term);
+      console.log(this.autores);
     }
   }
 
@@ -157,8 +155,8 @@ export class NewLivroComponent implements OnInit {
     }
   }
 
-  private async listAutoresByName(): Promise<void> {
-    const autor = this.livroForm.get('autor')!.value;
+  private async listAutoresByName(term: string): Promise<void> {
+    const autor = term;
     try {
       const response = await this.autorService.listByName(
         autor,
