@@ -45,6 +45,7 @@
   height: 100%;
   width: 100%;
   text-align: center;
+  padding-bottom: 2rem;
 }
 
 .NLivro-input-1{
@@ -126,4 +127,66 @@
   width: 90%;
   border-radius: 9px;
   border: 0.07rem solid var(--preto);
+}
+
+/* Estilos para o ng-select */
+.NLivro-select .ng-select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 90%; /* Ajuste a largura conforme necessário */
+  border-radius: 9px;
+  border: 0.07rem solid var(--preto); /* Cor da borda */
+  box-sizing: border-box;
+  padding: 0.5rem; /* Espaçamento interno */
+  height: 60%;
+}
+
+.NLivro-select .ng-select-container .ng-value-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.NLivro-select .ng-select-container .ng-input {
+  width: 100%;
+}
+
+.NLivro-select .ng-select-container .ng-clear-wrapper,
+.NLivro-select .ng-select-container .ng-arrow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NLivro-select .ng-dropdown-panel {
+  border-radius: 9px;
+  border: 0.07rem solid var(--preto);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--preto);
+}
+
+.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:last-child {
+  border-bottom: none;
+}
+
+.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+  background-color: var(--branco); /* Cor de fundo para opção */
+}
+
+.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option-selected {
+  background-color: var(--verde);
+}
+
+.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover {
+  background-color: var(--azul-claro);
 }
