@@ -38,7 +38,18 @@
       </div>
       <div class="NLivro-input-2">
         <label for="editora">Editora</label>
-        <input type="text" id="editora" formControlName="editora" placeholder="Editora" />
+        <ng-select
+          id="Editora"
+          [items]="editoras"
+          bindLabel="edi_Nome"
+          [multiple]="true"
+          [maxSelectedItems]="1"
+          formControlName="editora"
+          [searchable]="true"
+          [closeOnSelect]="true"
+          class="NLivro-select"
+        >
+        </ng-select>
       </div>
     </div>
     <div class="NLivro-input-group">
