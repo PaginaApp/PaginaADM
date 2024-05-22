@@ -5,6 +5,7 @@ import { ErrorDTO } from '../../../dto/ErrorDTO';
 import { IPaginatedResponse } from '../../../dto/IPaginatedResponse';
 import { LivroDTO } from '../../../dto/LivroDTO';
 import { HeaderComponent } from '../../header/header.component';
+import { EditLivroComponent } from '../edit-livro/edit-livro.component';
 import { NewAutorComponent } from '../new-autor/new-autor.component';
 import { NewEditoraComponent } from '../new-editora/new-editora.component';
 import { NewLivroComponent } from '../new-livro/new-livro.component';
@@ -19,6 +20,7 @@ import { NewLivroComponent } from '../new-livro/new-livro.component';
     NewEditoraComponent,
     NewAutorComponent,
     NewLivroComponent,
+    EditLivroComponent,
   ],
   templateUrl: './livros.component.html',
   styleUrl: './livros.component.css',
@@ -36,6 +38,10 @@ export class LivrosComponent implements OnInit {
   public isEditoraModalOpen: boolean = false;
   public isAutorModalOpen: boolean = false;
   public isLivroModalOpen: boolean = false;
+  public isLivroEditModalOpen: boolean = false;
+
+  // livro selecionado para edição
+  public selectedLivro: LivroDTO | undefined;
 
   public totalPages(): number {
     return Math.ceil(this.livros.total / this.livros.limit);
@@ -82,6 +88,10 @@ export class LivrosComponent implements OnInit {
     this.isEditoraModalOpen = false;
     this.isAutorModalOpen = false;
     this.isLivroModalOpen = false;
+    this.isLivroEditModalOpen = false;
+
+    // atualiza a lista de livros
+    this.updateList();
   }
 
   public openEditoraModal(): void {
@@ -94,5 +104,12 @@ export class LivrosComponent implements OnInit {
 
   public openLivroModal(): void {
     this.isLivroModalOpen = true;
+  }
+
+  public openLivroEditModal(liv_Id: string): void {
+    this.selectedLivro = this.livros.results.find(
+      (livro) => livro.liv_Id === liv_Id
+    );
+    this.isLivroEditModalOpen = true;
   }
 }

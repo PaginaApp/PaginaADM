@@ -23,7 +23,7 @@
         <td>{{ livro.autor.aut_Nome }}</td>
         <td>{{ livro.liv_Ano }}</td>
         <td>
-          <button aria-label="Editar livro">
+          <button aria-label="Editar livro" (click)="openLivroEditModal(livro.liv_Id)">
             <i class="ri-edit-line"></i>
           </button>
           <button aria-label="Excluir livro">
@@ -67,5 +67,11 @@
 <div *ngIf="isLivroModalOpen" class="modal-overlay" (click)="closeModals()">
   <div class="modal" (click)="$event.stopPropagation()">
     <app-new-livro (closeModalEvent)="closeModals()"></app-new-livro>
+  </div>
+</div>
+
+<div *ngIf="isLivroEditModalOpen" class="modal-overlay" (click)="closeModals()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <app-edit-livro (closeModalEvent)="closeModals()" [livro] = "selectedLivro" ></app-edit-livro>
   </div>
 </div>
