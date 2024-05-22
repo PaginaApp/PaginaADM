@@ -10,7 +10,7 @@ class LivroDTO {
   liv_ISBN: string;
   autor: AutorDTO;
   editora: EditoraDTO;
-  categoria: CategoriaDTO;
+  categorias: CategoriaDTO;
 
   constructor(
     liv_Id: string,
@@ -29,7 +29,7 @@ class LivroDTO {
     this.liv_ISBN = liv_ISBN;
     this.autor = autor;
     this.editora = editora;
-    this.categoria = categoria;
+    this.categorias = categoria;
   }
 }
 
