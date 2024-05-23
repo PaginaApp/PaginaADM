@@ -24,6 +24,31 @@ a{
   text-decoration: none;
 }
 
+/* tabela */
+table {
+  border-collapse: separate;
+  border-spacing: 0 0.3rem;
+  width: 100%;
+}
+
+thead th {
+  border-bottom: 2px solid black;
+  padding: 0.5rem;
+  background-color: var(--branco);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 0.5rem;
+  background-color: var(--branco);
+}
+
+tfoot td {
+  padding: 0.5rem;
+}
+
 .button-primary{
   transition: 0.5s;
   background-color: var(--azul-claro);
