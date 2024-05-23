@@ -1,0 +1,35 @@
+
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.tabela{
+  width: 100%;
+}
+
+.pagination-controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination-controls{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+
+
+
+
+.ri-delete-bin-7-line{
+  color: var(--vermelho);
+  font-size: 1.5rem;
+}

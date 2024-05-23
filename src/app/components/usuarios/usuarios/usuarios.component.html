@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="content">
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th>Estado</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios.results">
+          <td>{{ usuario.usu_Nome }}</td>
+          <td>{{ usuario.usu_Email }}</td>
+          <td>{{ usuario.usu_Telefone }}</td>
+          <td>{{ usuario.usu_Endereco.usu_cid.cid_est.est_Nome }}</td>
+          <td>
+            <button aria-label="Excluir usuario" (click)="openDeleteModal(usuario)" class="btn">
+              <i class="ri-delete-bin-7-line"></i>
+            </button>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <div class="pagination-controls">
+                <button *ngIf="usuarios.page > 1" (click)="prevPage()" aria-label="Página anterior">
+                  <i class="ri-arrow-left-s-line"></i>
+                </button>
+                {{ usuarios.page }} de {{ totalPages() }}
+                <button *ngIf="usuarios.page < totalPages()" (click)="nextPage()" aria-label="Próxima página">
+                  <i class="ri-arrow-right-s-line"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
+    </div>
+  </div>
