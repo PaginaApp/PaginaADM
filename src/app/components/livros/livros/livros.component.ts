@@ -31,7 +31,7 @@ export class LivrosComponent implements OnInit {
   constructor(private livroService: LivroService) {}
 
   public livros: IPaginatedResponse<LivroDTO> = {
-    limit: 9,
+    limit: 7,
     page: 1,
     total: 0,
     results: [],
