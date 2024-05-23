@@ -5,6 +5,7 @@ import { ErrorDTO } from '../../../dto/ErrorDTO';
 import { IPaginatedResponse } from '../../../dto/IPaginatedResponse';
 import { LivroDTO } from '../../../dto/LivroDTO';
 import { HeaderComponent } from '../../header/header.component';
+import { DeleteLivroComponent } from '../delete-livro/delete-livro.component';
 import { EditLivroComponent } from '../edit-livro/edit-livro.component';
 import { NewAutorComponent } from '../new-autor/new-autor.component';
 import { NewEditoraComponent } from '../new-editora/new-editora.component';
@@ -21,6 +22,7 @@ import { NewLivroComponent } from '../new-livro/new-livro.component';
     NewAutorComponent,
     NewLivroComponent,
     EditLivroComponent,
+    DeleteLivroComponent,
   ],
   templateUrl: './livros.component.html',
   styleUrl: './livros.component.css',
@@ -39,6 +41,7 @@ export class LivrosComponent implements OnInit {
   public isAutorModalOpen: boolean = false;
   public isLivroModalOpen: boolean = false;
   public isLivroEditModalOpen: boolean = false;
+  public isDeleteModalOpen: boolean = false;
 
   // livro selecionado para edição
   public selectedLivro: LivroDTO | undefined;
@@ -89,6 +92,7 @@ export class LivrosComponent implements OnInit {
     this.isAutorModalOpen = false;
     this.isLivroModalOpen = false;
     this.isLivroEditModalOpen = false;
+    this.isDeleteModalOpen = false;
 
     // atualiza a lista de livros
     this.updateList();
@@ -111,5 +115,12 @@ export class LivrosComponent implements OnInit {
       (livro) => livro.liv_Id === liv_Id
     );
     this.isLivroEditModalOpen = true;
+  }
+
+  public openDeleteModal(liv_Id: string): void {
+    this.selectedLivro = this.livros.results.find(
+      (livro) => livro.liv_Id === liv_Id
+    );
+    this.isDeleteModalOpen = true;
   }
 }

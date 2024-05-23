@@ -26,7 +26,7 @@
           <button aria-label="Editar livro" (click)="openLivroEditModal(livro.liv_Id)">
             <i class="ri-edit-line"></i>
           </button>
-          <button aria-label="Excluir livro">
+          <button aria-label="Excluir livro" (click)="openDeleteModal(livro.liv_Id)">
             <i class="ri-delete-bin-7-line"></i>
           </button>
       </tr>
@@ -73,5 +73,11 @@
 <div *ngIf="isLivroEditModalOpen" class="modal-overlay" (click)="closeModals()">
   <div class="modal" (click)="$event.stopPropagation()">
     <app-edit-livro (closeModalEvent)="closeModals()" [livro] = "selectedLivro" ></app-edit-livro>
+  </div>
+</div>
+
+<div *ngIf="isDeleteModalOpen" class="modal-overlay" (click)="closeModals()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <app-delete-livro (closeModalEvent)="closeModals()" [livro] = "selectedLivro" ></app-delete-livro>
   </div>
 </div>
