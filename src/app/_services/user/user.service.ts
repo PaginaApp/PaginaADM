@@ -44,9 +44,26 @@ export class UserService {
         console.log(user.usu_Id);
         const endereco = await this.enderecoService.getEndereco(user.usu_Id);
         if (endereco instanceof ErrorDTO && endereco.code === 404) {
-          user.usu_Endereco = null;
+          console.log('Endereço não encontrado');
+          // adiciona um endereço default
+          user.usu_Endereco = {
+            usu_Bairro: 'Bairro não informado',
+            usu_CEP: 'CEP não informado',
+            usu_Complemento: 'Complemento não informado',
+            usu_Numero: 'Número não informado',
+            usu_Rua: 'Rua não informada',
+            usu_cid: {
+              cid_Id: 'Cidade não informada',
+              cid_Nome: 'Cidade não informada',
+              cid_est: {
+                est_Id: 'Estado não informado',
+                est_Nome: 'Estado não informado',
+              },
+            },
+          };
+        } else {
+          user.usu_Endereco = endereco;
         }
-        user.usu_Endereco = endereco;
       }
 
       return {
