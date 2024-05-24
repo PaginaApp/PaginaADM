@@ -127,3 +127,9 @@ tfoot td {
   color: var(--vermelho);
   font-weight: 600;
 }
+
+/* alert */
+.alert{
+  color: var(--amarelo);
+  font-weight: 600;
+}
