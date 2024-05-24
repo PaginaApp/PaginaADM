@@ -1,0 +1,30 @@
+<div class="content">
+  <h2 class="title">
+    Deletar usuário?
+  </h2>
+  <div class="text">
+    <span>
+      Você tem certeza que deseja deletar este usuário
+    </span>
+    <div class="identificacao">
+      <span class="nome-livro">
+        {{ usuario!.usu_Nome }}
+      </span>
+      <span class="oculto">
+        {{ usuario!.usu_Email }}
+      </span>
+    </div>
+    <span class="alert">
+      Essa ação não pode ser desfeita.
+    </span>
+  </div>
+
+  <div class="actions">
+    <button (click)="close()" class="button-primary-outline">Cancelar</button>
+    <div class="error">
+      {{ error }}
+    </div>
+    <button (click)="deleteUser()" class="button-primary">Sim, deletar</button>
+  </div>
+</div>
+
