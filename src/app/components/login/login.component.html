@@ -1,15 +1,19 @@
-<div>
-  <h1>Login</h1>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email">
-    </div>
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="senha" formControlName="senha">
-    </div>
-    <button type="submit">Login</button>
-  </form>
-  <div *ngIf="error">{{ error }}</div>
+<div class="content">
+  <div class="log">
+    <h1 class="title">Área de Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+      <div class="input">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="admin@email.com">
+      </div>
+      <div class="input">
+        <label for="senha">Senha</label>
+        <input type="senha" id="senha" formControlName="senha" placeholder="Insira sua senha">
+      </div>
+      <div class="btn">
+        <button type="submit" class="button-primary">Entrar</button>
+      </div>
+    </form>
+    <div *ngIf="error">{{ error }}</div>
+  </div>
 </div>
