@@ -45,3 +45,8 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="isDeleteModalOpen" class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+    <app-delete-usuario (closeModalEvent)="closeModal()" [usuario] = "selectedUsuario" ></app-delete-usuario>
+  </div>

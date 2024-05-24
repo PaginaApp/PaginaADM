@@ -5,11 +5,12 @@ import { ErrorDTO } from '../../../dto/ErrorDTO';
 import { IPaginatedResponse } from '../../../dto/IPaginatedResponse';
 import { UserDTO } from '../../../dto/UserDTO';
 import { HeaderComponent } from '../../header/header.component';
+import { DeleteUsuarioComponent } from '../delete-usuario/delete-usuario.component';
 
 @Component({
   selector: 'app-usuarios',
   standalone: true,
-  imports: [HeaderComponent, NgFor, NgIf],
+  imports: [HeaderComponent, NgFor, NgIf, DeleteUsuarioComponent],
   templateUrl: './usuarios.component.html',
   styleUrl: './usuarios.component.css',
 })
@@ -24,6 +25,10 @@ export class UsuariosComponent implements OnInit {
   };
 
   public error: string | undefined;
+
+  //modal
+  public isDeleteModalOpen: boolean = false;
+  public selectedUsuario: UserDTO | undefined;
 
   async ngOnInit(): Promise<void> {
     await this.listUser();
@@ -66,5 +71,13 @@ export class UsuariosComponent implements OnInit {
     }
   }
 
-  public openDeleteModal(usuario: UserDTO) {}
+  public openDeleteModal(usuario: UserDTO) {
+    this.selectedUsuario = usuario;
+    this.isDeleteModalOpen = true;
+  }
+
+  public closeModal() {
+    this.isDeleteModalOpen = false;
+    this.listUser();
+  }
 }
