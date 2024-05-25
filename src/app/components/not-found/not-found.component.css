@@ -1,0 +1,23 @@
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+}
+
+.hero{
+  width: 27rem;
+}
+
+.text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: var(--roxo-escuro);
+}
+
+.text h1{
+  font-size: 10rem;
+  margin: -10%;
+}
