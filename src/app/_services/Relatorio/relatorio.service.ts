@@ -2,8 +2,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ErrorDTO } from '../../dto/ErrorDTO';
+import { RelatorioCatMesDTO } from '../../dto/RelatorioCatMesDTO';
 import { RelatorioExemplarMesDTO } from '../../dto/RelatorioExemplarMesDTO';
 import { RelatorioIdadeDTO } from '../../dto/RelatorioIdadeDTO';
+import { RelatorioTransacaoMesDTO } from '../../dto/RelatorioTransacaoMesDTO';
 import { GlobalService } from '../global.service';
 
 @Injectable({
@@ -27,7 +29,14 @@ export class RelatorioService {
           }
         )
       );
-      return new RelatorioIdadeDTO(response);
+      const data = new RelatorioIdadeDTO({
+        till_30: response.data.till_30,
+        btwn_30_50: response.data.btwn_30_50,
+        over_50: response.data.over_50,
+      });
+
+      console.log(data, 'teste');
+      return data;
     } catch (error) {
       if (error instanceof HttpErrorResponse) {
         return new ErrorDTO(error.error.message, error.status);
@@ -67,7 +76,7 @@ export class RelatorioService {
   // relatorio transacoes realizadas mes
   async relatorioTransacoesMes(
     ano: Number
-  ): Promise<RelatorioExemplarMesDTO | ErrorDTO> {
+  ): Promise<RelatorioTransacaoMesDTO | ErrorDTO> {
     try {
       const response = await firstValueFrom(
         this.http.get<any>(
@@ -92,9 +101,7 @@ export class RelatorioService {
   }
 
   // relatorio cat por mes
-  async relatorioCatMes(
-    ano: Number
-  ): Promise<RelatorioExemplarMesDTO | ErrorDTO> {
+  async relatorioCatMes(ano: Number): Promise<RelatorioCatMesDTO | ErrorDTO> {
     try {
       const response = await firstValueFrom(
         this.http.get<any>(
