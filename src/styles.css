@@ -49,6 +49,15 @@ tfoot td {
   padding: 0.5rem;
 }
 
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+}
+
 .button-primary{
   transition: 0.5s;
   background-color: var(--azul-claro);
@@ -126,6 +135,7 @@ tfoot td {
 .error{
   color: var(--vermelho);
   font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 /* alert */
