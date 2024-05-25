@@ -3,6 +3,7 @@ import { autenticacaoGuard } from './_services/guards/autenticacao.guard';
 import { LivrosComponent } from './components/livros/livros/livros.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { RelatorioComponent } from './components/relatorio/relatorio/relatorio.component';
 import { UsuariosComponent } from './components/usuarios/usuarios/usuarios.component';
 
 export const routes: Routes = [
@@ -27,6 +28,13 @@ export const routes: Routes = [
   {
     path: 'usuarios',
     component: UsuariosComponent,
+    pathMatch: 'full',
+    canActivate: [autenticacaoGuard],
+  },
+
+  {
+    path: 'relatorio',
+    component: RelatorioComponent,
     pathMatch: 'full',
     canActivate: [autenticacaoGuard],
   },
