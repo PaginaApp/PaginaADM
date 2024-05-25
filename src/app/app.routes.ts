@@ -3,6 +3,7 @@ import { autenticacaoGuard } from './_services/guards/autenticacao.guard';
 import { LivrosComponent } from './components/livros/livros/livros.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RelatorioComponent } from './components/relatorio/relatorio/relatorio.component';
 import { UsuariosComponent } from './components/usuarios/usuarios/usuarios.component';
 
@@ -40,4 +41,10 @@ export const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
+
+  {
+    path: '**',
+    component: NotFoundComponent,
+    canActivate: [autenticacaoGuard],
+  },
 ];
