@@ -1,13 +1,10 @@
 
 .content{
-  /* background-image: url('../../images/login.png'); */
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 100vw;
   height: 100vh;
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-end; */
+  justify-content: space-around;
 }
 
 .title{
@@ -22,9 +19,6 @@
   justify-content: center;
   height: 40vh;
   width: 40vw;
-  position: fixed;
-  bottom: 30vh;
-  left: 50vw;
 }
 
 .input{
@@ -65,4 +59,13 @@ svg {
   z-index: -1;
   width: 100%;
   height: auto;
+}
+
+.hero{
+  width: 27rem;
+}
+
+.logo{
+  width: 6rem;
+  margin-bottom: 1.5rem;
 }
