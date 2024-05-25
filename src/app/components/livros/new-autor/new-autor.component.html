@@ -6,9 +6,11 @@
       <label for="nome" class="label">Nome do autor</label>
       <input type="text" id="nome" formControlName="nome" placeholder="Insira o nome do autor">
   </form>
-  <div class="btns">
-    <button (click)="closeModal()" class="button-primary-outline">Cancelar</button>
+  <div class="btnErr">
     <div *ngIf="error" class="error">{{ error }}</div>
-    <button (click)="saveAutor()" class="button-primary">Salvar</button>
+    <div class="btns">
+      <button (click)="closeModal()" class="button-primary-outline">Cancelar</button>
+      <button (click)="saveAutor()" class="button-primary">Salvar</button>
+    </div>
   </div>
 </div>
