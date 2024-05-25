@@ -1,6 +1,6 @@
 
 .content{
-  background-image: url('../../images/login.png');
+  /* background-image: url('../../images/login.png'); */
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -56,4 +56,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: auto;
 }

@@ -69,7 +69,7 @@ export class LoginComponent {
       sessionStorage.setItem('user', JSON.stringify(response.user));
 
       // redireciona para a página inicial
-      this.router.navigate(['/conta']);
+      this.router.navigate(['/relatorio']);
     } catch (error) {
       console.error('Erro ao chamar createSession', error);
       this.error = 'Erro ao chamar createSession';
