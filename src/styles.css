@@ -7,7 +7,7 @@
   --roxo-escuro: #1F1D34;
   --preto: #14131A;
   --branco: #F6F5F2;
-  --amarelo: #F3E140;
+  --amarelo: #e7d000;
   --vermelho: #CD4E4E;
   --verde: #4ECD72;
 }
@@ -22,6 +22,14 @@ body *{
 
 a{
   text-decoration: none;
+}
+
+h1{
+  margin: 0%;
+}
+
+h2{
+  margin: 0%;
 }
 
 /* tabela */
@@ -142,4 +150,11 @@ svg {
 .alert{
   color: var(--amarelo);
   font-weight: 600;
+}
+
+.btnErr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
