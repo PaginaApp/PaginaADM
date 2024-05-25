@@ -12,6 +12,13 @@
   width: 100%;
 }
 
+.btn{
+  border: none;
+  background-color: var(--branco);
+  cursor: pointer;
+  text-align: center;
+}
+
 .pagination-controls button {
   background: none;
   border: none;
@@ -23,11 +30,6 @@
   justify-content: center;
   gap: 1rem;
 }
-
-
-
-
-
 
 .ri-delete-bin-7-line{
   color: var(--vermelho);
