@@ -1,7 +1,7 @@
 <div class="content">
-  <h2 class="title">
+  <h1>
     Deletar usuário?
-  </h2>
+  </h1>
   <div class="text">
     <span>
       Você tem certeza que deseja deletar este usuário
@@ -19,12 +19,14 @@
     </span>
   </div>
 
-  <div class="actions">
-    <button (click)="close()" class="button-primary-outline">Cancelar</button>
+  <div class="btnErr">
     <div class="error">
       {{ error }}
     </div>
-    <button (click)="deleteUser()" class="button-primary">Sim, deletar</button>
+    <div class="actions">
+      <button (click)="close()" class="button-primary-outline">Cancelar</button>
+      <button (click)="deleteUser()" class="button-primary">Sim, deletar</button>
+    </div>
   </div>
 </div>
 
