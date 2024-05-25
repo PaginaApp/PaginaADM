@@ -1,0 +1,23 @@
+.grafico{
+  width: 25%;
+  height: 25%;
+  margin: 0 auto;
+  display: block;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.title{
+  font-size: small;
+}
