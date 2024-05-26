@@ -1,192 +1,75 @@
-.NLivro-content{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-.NLivro-title{
-  display: flex;
-  justify-content: left;
-  height: 100%;
-  width: 100%;
-  margin-left: 2rem;
-  margin-bottom: 0%;
-}
-
-.NLivro-inputs{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-
-}
-
-.NLivro-input-group{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-  padding-bottom: 1rem;
-  gap: 1rem;
-}
-
-.NLivro-btns{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  padding-bottom: 2rem;
-}
-
-.NLivro-input-1{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 50%;
-}
-
-.NLivro-input-2{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
-  width: 40%;
-}
-
-.NLivro-input-2 label{
-  font-weight: 600;
-  display: flex;
-  justify-content: left;
-  align-items: flex-end;
-  width: 85%;
-}
-
-.NLivro-input-1 label{
-  font-weight: 600;
-  display: flex;
-  justify-content: left;
-  align-items: flex-end;
-  width: 85%;
-}
-
-.NLivro-input-1 input{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 87%;
-  border-radius: 9px;
+ng-select {
+  border-radius: 0.5rem;
   border: 0.07rem solid var(--preto);
+  padding: 0.3rem;
 }
 
-.NLivro-input-2 input{
+h1{
+  margin: 0rem;
+}
+
+.content {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 87%;
-  border-radius: 9px;
-  border: 0.07rem solid var(--preto);
+  align-items: center;
+  justify-content: center;
 }
 
-.NLivro-input-total{
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 0 repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  margin: 0.5rem 1rem 1rem 1rem;
+}
+
+.input {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-}
-
-.NLivro-input-total label{
-  font-weight: 600;
-  display: flex;
-  justify-content: left;
-  align-items: flex-end;
-  width: 90%;
-}
-
-.NLivro-input-total input{
-  display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 90%;
-  border-radius: 9px;
+}
+
+.plain-input {
+  border-radius: 0.5rem;
   border: 0.07rem solid var(--preto);
+  padding: 0.3rem;
 }
 
-/* Estilos para o ng-select */
-.NLivro-select .ng-select-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  width: 90%; /* Ajuste a largura conforme necessário */
-  border-radius: 9px;
-  border: 0.07rem solid var(--preto); /* Cor da borda */
-  box-sizing: border-box;
-  padding: 0.5rem; /* Espaçamento interno */
-  height: 60%;
+.ng-option {
+  padding: 0.3rem;
+  background-color: var(--branco);
+  border-bottom: 1px dashed var(--roxo-claro);
+  border-left: 1px solid var(--roxo-claro);
+  border-right: 1px solid var(--roxo-claro);
 }
 
-.NLivro-select .ng-select-container .ng-value-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.NLivro-select .ng-select-container .ng-input {
-  width: 100%;
-}
-
-.NLivro-select .ng-select-container .ng-clear-wrapper,
-.NLivro-select .ng-select-container .ng-arrow-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.NLivro-select .ng-dropdown-panel {
-  border-radius: 9px;
-  border: 0.07rem solid var(--preto);
-  box-sizing: border-box;
-  width: 100%;
-}
-
-.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--preto);
-}
-
-.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:last-child {
-  border-bottom: none;
-}
-
-.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
-  background-color: var(--branco); /* Cor de fundo para opção */
-}
-
-.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option-selected {
-  background-color: var(--verde);
-}
-
-.NLivro-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover {
+.ng-option:hover {
   background-color: var(--azul-claro);
+  color: var(--branco);
 }
+
+.ng-option-selected {
+  background-color: var(--verde);
+  color: var(--branco);
+}
+
+.ng-option:first-child {
+  border-top: 1px solid var(--roxo-claro);
+}
+
+.ng-option:last-child {
+  border-bottom: 1px solid var(--roxo-claro);
+}
+
+.ng-select-container--focused .ng-select-container--open {
+  border: 1px solid var(--roxo-claro);
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 3; }
+.div2 { grid-area: 1 / 4 / 2 / 6; }
+.div3 { grid-area: 2 / 1 / 3 / 6; }
+.div4 { grid-area: 3 / 1 / 4 / 3; }
+.div5 { grid-area: 3 / 4 / 4 / 6; }
+.div6 { grid-area: 4 / 1 / 5 / 6; }
+.div7 { grid-area: 5 / 1 / 6 / 6; }
