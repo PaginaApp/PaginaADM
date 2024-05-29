@@ -92,4 +92,28 @@ export class LoginService {
       }
     }
   }
+
+  async verifyToken(
+    token: string,
+    user_Id: string
+  ): Promise<boolean | ErrorDTO> {
+    try {
+      await firstValueFrom(
+        this.http.get<any>(`${this.globalService.baseUrl}session/${user_Id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            // para pular a mensagem do navegador
+            'ngrok-skip-browser-warning': 'true',
+          },
+        })
+      );
+      return true;
+    } catch (error) {
+      if (error instanceof HttpErrorResponse) {
+        return new ErrorDTO(error.error.message, error.status);
+      } else {
+        return new ErrorDTO('Erro ao chamar verifyToken', 500);
+      }
+    }
+  }
 }
