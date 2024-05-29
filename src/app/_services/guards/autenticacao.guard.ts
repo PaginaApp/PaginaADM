@@ -24,12 +24,10 @@ export const autenticacaoGuard: CanActivateFn = async (
       return true;
     } else {
       // Se o token não for válido, redirecione para a página de login
-      console.log('Token inválido');
       await router.navigate(['/login']);
       return false;
     }
   } else {
-    console.log('Token não encontrado');
     await router.navigate(['/login']);
     return false;
   }
