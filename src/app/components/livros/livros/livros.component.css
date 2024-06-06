@@ -1,0 +1,48 @@
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.btns{
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  gap: 1rem;
+}
+
+.tabela{
+  width: 100%;
+}
+
+.pagination-controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.pagination-controls{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn{
+  border: none;
+  background-color: var(--branco);
+  cursor: pointer;
+  text-align: center;
+}
+
+.ri-edit-line{
+  color: var(--azul-claro);
+  font-size: 1.5rem;
+}
+
+.ri-delete-bin-7-line{
+  color: var(--vermelho);
+  font-size: 1.5rem;
+}

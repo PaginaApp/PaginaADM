@@ -1,0 +1,84 @@
+<app-header></app-header>
+<div class="content">
+  <div class="btns">
+    <button class="button-primary" (click)="openLivroModal()">Novo livro</button>
+    <button class="button-primary" (click)="openEditoraModal()">Nova Editora</button>
+    <button class="button-primary" (click)="openAutorModal()">Novo Autor</button>
+  </div>
+  <div class="tabela">
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>ISBN</th>
+          <th>Autor</th>
+          <th>Ano</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let livro of livros.results">
+          <td>{{ livro.liv_Titulo }}</td>
+          <td>{{ livro.liv_ISBN }}</td>
+          <td>{{ livro.autor.aut_Nome }}</td>
+          <td>{{ livro.liv_Ano }}</td>
+          <td>
+            <button aria-label="Editar livro" (click)="openLivroEditModal(livro.liv_Id)" class="btn">
+              <i class="ri-edit-line"></i>
+            </button>
+            <button aria-label="Excluir livro" (click)="openDeleteModal(livro.liv_Id)" class="btn">
+              <i class="ri-delete-bin-7-line"></i>
+            </button>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <div class="pagination-controls">
+                <button *ngIf="livros.page > 1" (click)="prevPage()" aria-label="Página anterior">
+                  <i class="ri-arrow-left-s-line"></i>
+                </button>
+                {{ livros.page }} de {{ totalPages() }}
+                <button *ngIf="livros.page < totalPages()" (click)="nextPage()" aria-label="Próxima página">
+                  <i class="ri-arrow-right-s-line"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isEditoraModalOpen" class="modal-overlay" (click)="closeModals()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <app-new-editora (closeModalEvent)="closeModals()"></app-new-editora>
+    </div>
+  </div>
+
+  <div *ngIf="isAutorModalOpen" class="modal-overlay" (click)="closeModals()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <app-new-autor (closeModalEvent)="closeModals()"></app-new-autor>
+    </div>
+  </div>
+
+  <div *ngIf="isLivroModalOpen" class="modal-overlay" (click)="closeModals()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <app-new-livro (closeModalEvent)="closeModals()"></app-new-livro>
+    </div>
+  </div>
+
+  <div *ngIf="isLivroEditModalOpen" class="modal-overlay" (click)="closeModals()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <app-edit-livro (closeModalEvent)="closeModals()" [livro] = "selectedLivro" ></app-edit-livro>
+    </div>
+  </div>
+
+  <div *ngIf="isDeleteModalOpen" class="modal-overlay" (click)="closeModals()">
+    <div class="modal" (click)="$event.stopPropagation()">
+    <app-delete-livro (closeModalEvent)="closeModals()" [livro] = "selectedLivro" ></app-delete-livro>
+  </div>
+</div>

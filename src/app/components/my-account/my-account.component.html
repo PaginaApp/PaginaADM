@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<div class="content">
+  <div class="avatar">
+    <img [src]="avatar" alt="Avatar">
+    <input type="file" (change)="onFileSelected($event)" class="input-img">
+  </div>
+  <div class="inputs">
+    <div class="inputs-content">
+      <div class="input">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" id="nome" [value]="nome" readonly>
+      </div>
+      <button class="button-primary" (click)="openModal()"> <i class="ri-edit-line"></i> Alterar Senha</button>
+    </div>
+    <div class="inputs-content mt-05">
+      <div class="input">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" [value]="email" readonly>
+      </div>
+      <button class="button-primary-outline"  (click)="openLogoutModal()"> <i class="ri-logout-box-r-line"></i> Sair</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isChangePasswordModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <app-password (closeModalEvent)="closeModal()"></app-password>
+  </div>
+</div>
+
+<div *ngIf="isLogoutModalOpen" class="modal-overlay" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <app-logout (closeModalEvent)="closeModal()"></app-logout>
+  </div>
+</div>

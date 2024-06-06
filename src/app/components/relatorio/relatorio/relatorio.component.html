@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="content">
+  <div *ngIf="relatorioIdade" class="grafico g-idade">
+    <h6 class="title">Relatório de Idade</h6>
+    <canvas baseChart
+      [data]="idadeChartData"
+      [options]="chartOptions"
+      [type]="'pie'">
+    </canvas>
+  </div>
+
+  <div *ngIf="relatorioExemplarMes" class="grafico g-exemplar">
+    <h6 class="title">Relatório de Exemplares por Mês</h6>
+    <canvas baseChart
+      [data]="exemplarChartData"
+      [options]="chartOptions"
+      [type]="'line'">>
+    </canvas>
+  </div>
+
+  <div *ngIf="relatorioTransacoesMes" class="grafico g-transacoes">
+    <h6 class="title">Relatório de Transações por Mês</h6>
+    <canvas baseChart
+      [data]="transacoesChartData"
+      [options]="chartOptions"
+      [type]="'bar'">
+    </canvas>
+  </div>
+
+  <div *ngIf="relatorioCatMes" class="grafico g-categoria">
+    <h6 class="title">Relatório de Categorias por Mês</h6>
+    <canvas baseChart
+      [data]="catChartData"
+      [options]="chartOptions"
+      [type]="'bar'">
+    </canvas>
+  </div>
+</div>

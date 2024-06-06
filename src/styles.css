@@ -7,12 +7,154 @@
   --roxo-escuro: #1F1D34;
   --preto: #14131A;
   --branco: #F6F5F2;
-  --amarelo: #F3E140;
+  --amarelo: #e7d000;
   --vermelho: #CD4E4E;
   --verde: #4ECD72;
 }
 
 body{
   margin: 0%;
+}
+
+body *{
   font-family: "Poppins";
+}
+
+a{
+  text-decoration: none;
+}
+
+h1{
+  margin: 0%;
+}
+
+h2{
+  margin: 0%;
+}
+
+/* tabela */
+table {
+  border-collapse: separate;
+  border-spacing: 0 0.3rem;
+  width: 100%;
+}
+
+thead th {
+  border-bottom: 2px solid black;
+  padding: 0.5rem;
+  background-color: var(--branco);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  text-align: left;
+}
+
+tbody td {
+  padding: 0.5rem;
+  background-color: var(--branco);
+}
+
+tfoot td {
+  padding: 0.5rem;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: auto;
+}
+
+.button-primary{
+  transition: 0.5s;
+  background-color: var(--azul-claro);
+  color: var(--branco);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 12rem;
+}
+
+.button-primary-outline{
+  transition: 0.5s;
+  background-color: transparent;
+  color: var(--azul-claro);
+  border: 2px solid var(--azul-claro);
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 12rem;
+}
+
+.button-primary-outline:hover{
+  transition: 0.5s;
+  background-color: var(--azul-claro);
+  color: var(--branco);
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 12rem;
+}
+
+.button-primary:hover{
+  transition: 0.5s;
+  background-color: transparent;
+  color: var(--azul-claro);
+  border: 2px solid var(--azul-claro);
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  width: 12rem;
+}
+
+/* modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  width: auto;
+  height: auto;
+  background: var(--branco);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  padding: 1rem;
+}
+
+/* error */
+.error{
+  color: var(--vermelho);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* alert */
+.alert{
+  color: var(--amarelo);
+  font-weight: 600;
+}
+
+.btnErr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

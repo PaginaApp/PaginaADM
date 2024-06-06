@@ -1,0 +1,55 @@
+.content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.title{
+  display: flex;
+  justify-content: left;
+  align-items: flex-end;
+  width: 100%;
+  margin-left: 2rem;
+  margin-bottom: 0%;
+  margin-top: 0%;
+}
+
+.text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.actions{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.oculto{
+  color: var(--roxo-claro);
+  font-size: small;
+}
+
+.nome-livro{
+  font-size: larger;
+  font-weight: 600;
+}
+
+.identificacao{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+}

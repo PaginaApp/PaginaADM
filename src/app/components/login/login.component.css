@@ -1,0 +1,62 @@
+
+.content{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.title{
+  margin-top: 0%;
+  font-size: 3rem;
+}
+
+.log{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+  width: 40vw;
+}
+
+.input{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input input{
+  width: 100%;
+  border-radius: 11px;
+  height: 2rem;
+  border: 0.06rem solid var(--preto);
+}
+
+.input label{
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero{
+  width: 27rem;
+}
+
+.logo{
+  width: 6rem;
+  margin-bottom: 1.5rem;
+}

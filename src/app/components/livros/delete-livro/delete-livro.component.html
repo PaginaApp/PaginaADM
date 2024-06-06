@@ -1,0 +1,28 @@
+<div class="content">
+  <h1>
+    Deletar livro?
+  </h1>
+  <div class="text">
+    <span>
+      Você tem certeza que deseja deletar o livro
+    </span>
+    <div class="identificacao">
+      <span class="nome-livro">
+        {{ livro!.liv_Titulo }}
+      </span>
+      <span class="oculto">
+        {{ livro!.liv_ISBN }}
+      </span>
+    </div>
+    <span class="alert">
+      Essa ação não pode ser desfeita.
+    </span>
+  </div>
+  <div class="btnErr">
+    <div class="error">{{ error }}</div>
+    <div class="actions">
+      <button (click)="closeModal()" class="button-primary-outline">Cancelar</button>
+      <button (click)="deleteLivro()" class="button-primary">Sim, deletar</button>
+    </div>
+  </div>
+</div>
