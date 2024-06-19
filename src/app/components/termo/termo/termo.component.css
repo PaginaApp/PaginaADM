@@ -1,0 +1,28 @@
+
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+
+.btn{
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  gap: 1rem;
+}
+
+.termo{
+  width: 80vw;
+  height: 60vh;
+  resize: none;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--azul-claro);
+  padding: 1rem;
+}
+
