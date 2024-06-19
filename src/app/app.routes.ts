@@ -5,6 +5,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MyAccountComponent } from './components/my-account/my-account.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RelatorioComponent } from './components/relatorio/relatorio/relatorio.component';
+import { TermoComponent } from './components/termo/termo/termo.component';
 import { UsuariosComponent } from './components/usuarios/usuarios/usuarios.component';
 
 export const routes: Routes = [
@@ -41,6 +42,12 @@ export const routes: Routes = [
   },
 
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
+
+  {
+    path: 'termo',
+    component: TermoComponent,
+    pathMatch: 'full',
+  },
 
   {
     path: '**',
