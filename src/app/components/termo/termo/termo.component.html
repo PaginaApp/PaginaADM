@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="content">
   <div class="btn">
-    <button class="button-primary" (click)="openModal()">
+    <button class="button-primary">
       Alterar
     </button>
   </div>
@@ -9,9 +9,4 @@
     <h1>Termos de Uso e Política de Privacidade</h1>
     <textarea name="Termo" id="termo" [(ngModel)]="termo" readonly class="termo"></textarea>
   </div>
-</div>
-
-<div *ngIf="modal" class="modal-overlay" (click)="closeModal()">
-  <div class="modal" (click)="$event.stopPropagation()">
-  <app-new-termo (closeModalEvent)="closeModal()" ></app-new-termo>
 </div>
