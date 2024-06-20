@@ -24,5 +24,28 @@
   border-radius: 0.5rem;
   border: 1px solid var(--azul-claro);
   padding: 1rem;
+  background-color: var(--bage-claro);
+  cursor: default;
 }
 
+.termo:focus{
+  border: 1px solid var(--azul-claro);
+  outline: none;
+}
+
+.editable-termo{
+  width: 80vw;
+  height: 60vh;
+  resize: none;
+
+  border-radius: 0.5rem;
+  border: 1px solid var(--azul-claro);
+  padding: 1rem;
+}
+
+.edit-btn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+}

@@ -1,12 +1,22 @@
 <app-header></app-header>
 <div class="content">
   <div class="btn">
-    <button class="button-primary">
+    <button class="button-primary" (click)="OpenSaveButton()" *ngIf="!showSaveButton">
       Alterar
     </button>
   </div>
   <div class="text">
     <h1>Termos de Uso e Política de Privacidade</h1>
-    <textarea name="Termo" id="termo" [(ngModel)]="termo" readonly class="termo"></textarea>
+    <textarea name="Termo"
+      id="termo"
+      [(ngModel)]="termo"
+      [readonly]="!showSaveButton"
+      [class]="showSaveButton ? 'editable-termo' : 'termo'"
+      #textareaElement
+    ></textarea>
+    <div class="edit-btn">
+      <button class="button-primary-outline" *ngIf="showSaveButton" (click)="cancelSaveTermo()" >Cancelar</button>
+      <button class="button-primary" *ngIf="showSaveButton" (click)="SaveTermo()"  >Salvar</button>
+    </div>
   </div>
 </div>
