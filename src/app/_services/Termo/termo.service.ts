@@ -32,10 +32,18 @@ export class TermoService {
     }
   }
 
-  async createTermo(termo: any): Promise<TermoDTO | ErrorDTO> {
+  async createTermo(
+    tpr_Texto: string,
+    user_Id: string
+  ): Promise<TermoDTO | ErrorDTO> {
     try {
+      const body = {
+        tpr_Texto: tpr_Texto,
+        tpr_usu_id: user_Id,
+      };
+
       const response = await firstValueFrom(
-        this.http.post<any>(`${this.globalService.baseUrl}termo/`, termo, {
+        this.http.post<any>(`${this.globalService.baseUrl}termo/`, body, {
           headers: {
             //Authorization: `Bearer ${sessionStorage.getItem('accessToken')}`,
             'ngrok-skip-browser-warning': 'true',
